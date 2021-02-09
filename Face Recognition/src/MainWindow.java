@@ -30,11 +30,15 @@ import process.FaceDetection;
 import process.TheDetectedFace;
 import view.ImageFrame;
 import view.Navigator;
+import view.WebCamLive;
 import webcam.LiveRecognition;
 import webcam.WebCamCapture;
-import webcam.WebCamLive;
 import webcam.WebCamLiveCapture;
-
+/**
+ * Main part of the face recognition system, containing the GUI and the main program to run. 
+ * @author person12
+ *
+ */
 public class MainWindow {
 
 	// GUI variables
@@ -559,7 +563,7 @@ public class MainWindow {
 	private TheDetectedFace DetectFace()
 	{
 		BufferedImage img = webCapture.getImage();
-		DetectedFace face = FaceDetection.DetectFace(img);
+		DetectedFace face = FaceDetection.detectFace(img);
 		TheDetectedFace theFace = new TheDetectedFace(img,face);
         if ( theFace.isValid() ) {
         		frameWebCam.changeImage(theFace.getFaceImage());

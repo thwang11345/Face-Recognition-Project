@@ -3,12 +3,26 @@ package process;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
+/**
+ * Used to transform images (scaling and transforming to numerical data). Transformations and scaling are used to pre-process the images
+ * for training. 
+ * @author Thomas Hwang
+ *
+ */
 public class ImageTransfer {
+	/**
+	 * Constructs an Image transformation. 
+	 */
     public ImageTransfer() {
         
     }
-
+    /**
+     * Scales an image the desired width and height.
+     * @param inputImage the image to be processed
+     * @param dWidth the desired width
+     * @param dHeight the desired height
+     * @return an image scaled to dWidth and dHeight
+     */
     public static BufferedImage scale(BufferedImage inputImage, int dWidth, int dHeight) {
         BufferedImage outputImage = null;
         if(inputImage != null) {
@@ -19,7 +33,17 @@ public class ImageTransfer {
         }
         return outputImage;
     }
-    
+    /**
+     * Scales an image with boundaries startX, startY, endX, endY, to dWidth and dHeight.
+     * @param inputImage the input to be processed
+     * @param startX lower x bound
+     * @param startY lower y bound
+     * @param endX upper x bound
+     * @param endY upper y bound
+     * @param dWidth the desired width
+     * @param dHeight the desired height
+     * @return an image with boundaries startX, startY, endX, endY, scaled to dWidth and dHeight
+     */
     public static BufferedImage scale(BufferedImage inputImage, int startX, int startY, int endX, int endY, int dWidth, int dHeight) {
         BufferedImage outputImage = null;
         if(inputImage != null) {
@@ -37,7 +61,7 @@ public class ImageTransfer {
      * @param image BufferedImage image
      * @return image data in double array
      */
-    public static double [] GetImageData(BufferedImage image) {
+    public static double [] getImageData(BufferedImage image) {
         int imWidth = image.getWidth();
         int imHeight = image.getHeight();
         int bands    = 3;  // RGB

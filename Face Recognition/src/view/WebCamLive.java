@@ -1,5 +1,4 @@
-package webcam;
-
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.event.ItemEvent;
@@ -19,20 +18,33 @@ import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamPicker;
 import com.github.sarxos.webcam.WebcamResolution;
 
-
-public class WebCamLive extends JFrame implements Runnable, WebcamListener, WindowListener, UncaughtExceptionHandler, ItemListener, WebcamDiscoveryListener {
+/**
+ * Brings live footage from web camera.
+ * 
+ * @author Thomas Hwang
+ *
+ */
+public class WebCamLive extends JFrame implements Runnable, WebcamListener, WindowListener, UncaughtExceptionHandler,
+		ItemListener, WebcamDiscoveryListener {
 
 	private static final long serialVersionUID = 1L;
 
 	private Webcam webcam = null;
 	private WebcamPanel panel = null;
 	private WebcamPicker picker = null;
-	
-	public WebCamLive(Webcam webcam )
-	{
+
+	/**
+	 * Sets the webcam.
+	 * 
+	 * @param webcam the webcam used
+	 */
+	public WebCamLive(Webcam webcam) {
 		this.webcam = webcam;
 	}
 
+	/**
+	 * Displays live footage from the webcam.
+	 */
 	@Override
 	public void run() {
 
@@ -48,7 +60,7 @@ public class WebCamLive extends JFrame implements Runnable, WebcamListener, Wind
 		picker = new WebcamPicker();
 		picker.addItemListener(this);
 
-		if ( webcam == null)
+		if (webcam == null)
 			webcam = picker.getSelectedWebcam();
 
 		if (webcam == null) {
@@ -56,7 +68,7 @@ public class WebCamLive extends JFrame implements Runnable, WebcamListener, Wind
 			System.exit(1);
 		}
 
-		//webcam.setViewSize(WebcamResolution.VGA.getSize());
+		// webcam.setViewSize(WebcamResolution.VGA.getSize());
 		webcam.addWebcamListener(WebCamLive.this);
 
 		panel = new WebcamPanel(webcam, false);
@@ -80,7 +92,6 @@ public class WebCamLive extends JFrame implements Runnable, WebcamListener, Wind
 		t.setUncaughtExceptionHandler(this);
 		t.start();
 	}
-
 
 	@Override
 	public void webcamOpen(WebcamEvent we) {

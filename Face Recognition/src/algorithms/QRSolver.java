@@ -2,7 +2,7 @@ package algorithms;
 
 
 import java.util.*;
-
+// https://www.cec.uchile.cl/cinetica/pcordero/MC_libros/NumericalRecipesinC.pdf 
 /* Computing the eigenvalues and eigenvectors of a real symmetric matrix,
  * rewritten from C recipes for ease of use and efficiency.
  *
